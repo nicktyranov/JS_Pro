@@ -9,13 +9,13 @@ function diceRandom(dice) {
 	let startNum = 1;
 
 	const allDices = [
-		{ name: 'd4', start: 1, end: 4 },
-		{ name: 'd6', start: 1, end: 6 },
-		{ name: 'd8', start: 1, end: 8 },
-		{ name: 'd10', start: 1, end: 10 },
-		{ name: 'd12', start: 1, end: 12 },
-		{ name: 'd16', start: 1, end: 16 },
-		{ name: 'd20', start: 1, end: 20 },
+		{ name: 'd4', end: 4 },
+		{ name: 'd6', end: 6 },
+		{ name: 'd8', end: 8 },
+		{ name: 'd10', end: 10 },
+		{ name: 'd12', end: 12 },
+		{ name: 'd16', end: 16 },
+		{ name: 'd20', end: 20 },
 	];
 
 	const endNum = allDices.find((el) => el.name === dice)?.end;
