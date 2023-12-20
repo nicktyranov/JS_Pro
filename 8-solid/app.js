@@ -16,70 +16,55 @@ SOLID
 
 В git создать ветку: 8-solid
 */
-
 class Billing {
-	#amount = 0;
-	#rez = 0;
+    #amount;
 
-	constructor(amount) {
-		this.#amount = amount;
-	}
+    constructor(amount) {
+        this.#amount = amount;
+    }
 
-	calculateTotal(rez) {
-		return this.#rez
-	}
+    getAmount() {
+        return this.#amount;
+    }
 }
 
-class FixBilling extends Billing{
-	#amount = 0;
-	#rez = 0;
-	
-	constructor(amount) {
-		super(amount);
-	}
+class FixBilling extends Billing {
+    constructor(amount) {
+        super(amount);
+    }
 
-	calculateTotal(amount) {
-		this.#rez = amount
-		return this.#rez 
-	}
+    calculateTotal() {
+        return this.getAmount();
+    }
 }
 
-class HourBilling extends Billing{
-	#amount = 0;
-	#rez = 0;
-	
-	constructor(amount, hours) {
-		super(amount);
-		this.hours = hours;
-	}
-	
-	calculateTotal(amount, hours) {
-		this.#rez = amount * hours
-		return this.#rez 
-	}
+class HourBilling extends Billing {
+    constructor(amount, hours) {
+        super(amount);
+        this.hours = hours;
+    }
+
+    calculateTotal() {
+        return this.getAmount() * this.hours;
+    }
 }
 
-class ItemBilling extends Billing{
-	#amount = 0;
-	#rez = 0;
-	
-	constructor(amount, items) {
-		super(amount);
-		this.items = items;
-	}
-	
-	calculateTotal(amount, items) {
-		this.#rez = amount * items
-		return this.#rez 
-	}
+class ItemBilling extends Billing {
+    constructor(amount, items) {
+        super(amount);
+        this.items = items;
+    }
+
+    calculateTotal() {
+        return this.getAmount() * this.items;
+    }
 }
 
+const fixBilling = new FixBilling(100);
+console.log(fixBilling.calculateTotal());
 
-const fixBilling = new FixBilling();
-console.log(fixBilling.calculateTotal(100))
+const hourBilling = new HourBilling(10, 10);
+console.log(hourBilling.calculateTotal());
 
-const hourBilling = new HourBilling();
-console.log(hourBilling.calculateTotal(100));
-
-const itemBilling = new ItemBilling();
-console.log(hourBilling.calculateTotal(100))
+const itemBilling = new ItemBilling(5, 20);
+console.log(itemBilling.calculateTotal());
