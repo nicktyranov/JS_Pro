@@ -13,11 +13,15 @@ async function makeConnection() {
 }
 
 async function race() {
-    const res = await Promise.race([
-        makeConnection(),
-        makeConnection(),
-        makeConnection()
-    ]);
-    console.log(res);
+    try {
+        const res = await Promise.race([
+            makeConnection(),
+            makeConnection(),
+            makeConnection()
+        ]);
+        console.log(res);
+    } catch (e) {
+        console.error(e);
+    }
 }
 race()
