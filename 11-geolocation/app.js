@@ -10,7 +10,22 @@ navigator.geolocation.getCurrentPosition(function (position) {
 });
 */
 function getGeo() {
-    return new Promise((resolve, reject) => {
+    let hasGeo = false;
+    let hasGeoPermission = false;
+    
+    navigator.permissions.query({ name: 'geolocation' })
+        .then((data) => {
+            console.log(data.state)
+            if (data.state == 'granted') {
+                hasGeoPermission = true;
+            }
+            console.log(hasGeoPermission);
+        });
+
+    if ('geolocation' in navigator) {
+        hasGeo = true;
+
+        return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(
             function (position) {
                 resolve(geoToConsol(position.coords.latitude, position.coords.longitude));
@@ -19,7 +34,11 @@ function getGeo() {
                 reject(error);
             }
         );
-    });
+        });
+        
+    } else {
+        return 'your device does not support it'
+    }
 };
 
 function geoToConsol(lat, lon) {

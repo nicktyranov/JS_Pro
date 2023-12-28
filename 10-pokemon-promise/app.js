@@ -31,8 +31,6 @@ function requestDescription() {
 requestDescription()
 */
 
-let newUrl = '';
-
 function pokemonPromiseGetDescription(url) {
     return fetch(url)
         .then(response => {
@@ -42,26 +40,17 @@ function pokemonPromiseGetDescription(url) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
-            newUrl = data.abilities[0].ability.url;
-            console.log(newUrl);
-            return newUrl;
+            if (url === 'https://pokeapi.co/api/v2/pokemon/ditto/') {
+                
+                const abilityUrl = data.abilities[0].ability.url;
+                console.log(abilityUrl);
+                return pokemonPromiseGetDescription(abilityUrl); 
+            } else {
+                console.log(data.effect_entries[1].effect);
+            }
         })
         .catch(error => console.log(error));
 }
 
-function pokemonPromiseGetDescription2(url) {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => console.log(data.effect_entries[1].effect))
-        .catch(error => console.log(error));
-}
-// Используем промисы для управления последовательностью вызовов
 pokemonPromiseGetDescription('https://pokeapi.co/api/v2/pokemon/ditto/')
-    .then(newUrl => pokemonPromiseGetDescription2(newUrl))
     .catch(error => console.log(error));
