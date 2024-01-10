@@ -1,0 +1,29 @@
+{
+  "name": "npm-task",
+  "version": "1.0.0",
+  "description": "n/a",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "start": "live-server --port=8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicktyranov/JS_Pro.git"
+  },
+  "keywords": [
+    "user",
+    "task"
+  ],
+  "author": "Nikolai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicktyranov/JS_Pro/issues"
+  },
+  "homepage": "https://github.com/nicktyranov/JS_Pro#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "rollup": "^4.9.2"
+  }
+}
